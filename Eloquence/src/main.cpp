@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
     if (not std::filesystem::exists(path_xml))
     {
-        std::cerr << "Could not find " << path_xml << '\n';
+        std::cerr << "Could not find '" << path_xml << "'\n";
         return EXIT_FAILURE;
     }
 
