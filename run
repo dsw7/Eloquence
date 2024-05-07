@@ -3,6 +3,7 @@
 PRIVATE_IP_SCAN_RANGE="10.0.0.0/24"
 PATH_XML="/tmp/nmap-results.xml"
 
+echo "Scanning the CIDR block: $PRIVATE_IP_SCAN_RANGE"
 echo "Attempting to run nmap. This may take a few moments..."
 
 if sudo nmap -sn --traceroute $PRIVATE_IP_SCAN_RANGE -oX=$PATH_XML > /dev/null; then
