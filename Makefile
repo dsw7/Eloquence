@@ -1,4 +1,4 @@
-.PHONY = help compile clean lint format
+.PHONY = help compile clean lint sc format
 .DEFAULT_GOAL = help
 
 define HELP_LIST_TARGETS
@@ -8,7 +8,9 @@ To remove build directory:
     $$ make clean
 To run cppcheck linter:
     $$ make lint
-To format code:
+To run shellcheck linter:
+    $$ make sc
+To format C++ code:
     $$ make format
 endef
 
@@ -26,6 +28,9 @@ clean:
 
 lint:
 	@cppcheck Eloquence --enable=all
+
+sc:
+	@shellcheck --shell=bash run
 
 format:
 	@clang-format -i --verbose --style=file Eloquence/src/*.cpp Eloquence/include/*.hpp
