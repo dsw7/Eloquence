@@ -1,3 +1,5 @@
+#include "parse-xml.hpp"
+
 #include <filesystem>
 #include <iostream>
 
@@ -15,6 +17,11 @@ int main(int argc, char **argv)
     if (not std::filesystem::exists(path_xml))
     {
         std::cerr << "Could not find '" << path_xml << "'\n";
+        return EXIT_FAILURE;
+    }
+
+    if (not ::parse_xml(path_xml))
+    {
         return EXIT_FAILURE;
     }
 
