@@ -1,4 +1,5 @@
 #include "parse-xml.hpp"
+#include "utils.hpp"
 
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
@@ -42,7 +43,9 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
+    ::separator();
     ::get_stats(root->first_node("runstats"));
+    ::separator();
     ::get_hosts(root->first_node("host"));
 
     std::cout << '\n';

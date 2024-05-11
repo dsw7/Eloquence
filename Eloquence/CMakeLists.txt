@@ -59,4 +59,5 @@ add_executable(
   "elo"
   "src/main.cpp"
   "src/parse-xml.cpp"
+  "src/utils.cpp"
 )
