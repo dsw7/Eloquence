@@ -7,14 +7,14 @@ ParseXMLReport::ParseXMLReport(rapidxml::xml_node<> *root)
     this->root = root;
 }
 
-bool ParseXMLReport::get_stats()
+void ParseXMLReport::get_stats()
 {
     rapidxml::xml_node<> *runstats = this->root->first_node("runstats");
 
     if (runstats == NULL)
     {
         std::cerr << "Missing 'runstats' node!" << '\n';
-        return false;
+        return;
     }
 
     rapidxml::xml_node<> *hosts = runstats->first_node("hosts");
@@ -27,15 +27,11 @@ bool ParseXMLReport::get_stats()
 
     rapidxml::xml_attribute<> *total = hosts->first_attribute("total");
     std::cout << "Number of machines scanned: " << total->value() << '\n';
-
-    return true;
 }
 
-/*
+void ParseXMLReport::get_hosts()
 {
-    rapidxml::xml_node<> *root = this->document.first_node();
-
-    for (rapidxml::xml_node<> *node = root->first_node(); node; node = node->next_sibling())
+    for (auto node = this->root->first_node(); node; node = node->next_sibling())
     {
         if (node->name() != std::string("host"))
         {
@@ -57,7 +53,4 @@ bool ParseXMLReport::get_stats()
             break;
         }
     }
-
-    return true;
 }
-*/

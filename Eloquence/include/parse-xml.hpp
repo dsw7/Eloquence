@@ -6,7 +6,8 @@ class ParseXMLReport
 {
 public:
     ParseXMLReport(rapidxml::xml_node<> *root);
-    bool get_stats();
+    void get_stats();
+    void get_hosts();
 
 private:
     rapidxml::xml_node<> *root = nullptr;

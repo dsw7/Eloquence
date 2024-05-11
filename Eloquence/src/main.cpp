@@ -43,6 +43,7 @@ int main(int argc, char **argv)
 
     ParseXMLReport parser(root);
     parser.get_stats();
+    parser.get_hosts();
 
     return EXIT_SUCCESS;
 }
