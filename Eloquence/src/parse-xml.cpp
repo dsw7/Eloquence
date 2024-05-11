@@ -1,29 +1,36 @@
 #include "parse-xml.hpp"
 
-#include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
 #include <iostream>
 #include <stdexcept>
 
-bool parse_xml(const std::string &path_xml)
+ParseXMLReport::~ParseXMLReport()
 {
-    rapidxml::xml_document<> doc;
+    this->document.clear();
+}
 
+bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
+{
     try
     {
-        rapidxml::file<> xmlFile(path_xml.c_str());
-        doc.parse<0>(xmlFile.data());
+        rapidxml::file<> xml_file(path_xml_file.c_str());
+        this->document.parse<0>(xml_file.data());
     }
     catch (const std::runtime_error &e)
     {
-        std::cerr << "Failed to open '" << path_xml << "'\n"
+        std::cerr << "Failed to open '" << path_xml_file << "'\n"
                   << "It's possible the permissions on this file are too restrictive\n"
                   << "Raw message: '" << e.what() << "'\n";
 
         return false;
     }
 
-    rapidxml::xml_node<> *root = doc.first_node();
+    return true;
+}
+
+/*
+{
+    rapidxml::xml_node<> *root = this->document.first_node();
 
     for (rapidxml::xml_node<> *node = root->first_node(); node; node = node->next_sibling())
     {
@@ -50,3 +57,4 @@ bool parse_xml(const std::string &path_xml)
 
     return true;
 }
+*/

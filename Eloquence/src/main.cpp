@@ -20,7 +20,9 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    if (not ::parse_xml(path_xml))
+    ParseXMLReport parser;
+
+    if (not parser.parse_xml_file(path_xml))
     {
         return EXIT_FAILURE;
     }
