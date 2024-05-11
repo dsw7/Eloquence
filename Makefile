@@ -1,4 +1,4 @@
-.PHONY = help compile clean lint sc format
+.PHONY = help compile clean lint sc format test
 .DEFAULT_GOAL = help
 
 define HELP_LIST_TARGETS
@@ -12,6 +12,8 @@ To run shellcheck linter:
     $$ make sc
 To format C++ code:
     $$ make format
+To run unit tests:
+    $$ make test
 endef
 
 export HELP_LIST_TARGETS
@@ -34,3 +36,6 @@ sc:
 
 format:
 	@clang-format -i --verbose --style=file Eloquence/src/*.cpp Eloquence/include/*.hpp
+
+test: compile
+	@pytest -vs tests
