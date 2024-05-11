@@ -4,17 +4,14 @@
 #include <iostream>
 #include <stdexcept>
 
-ParseXMLReport::~ParseXMLReport()
-{
-    this->document.clear();
-}
-
 bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
 {
+    rapidxml::xml_document<> document;
+
     try
     {
         rapidxml::file<> xml_file(path_xml_file.c_str());
-        this->document.parse<0>(xml_file.data());
+        document.parse<0>(xml_file.data());
     }
     catch (const std::runtime_error &e)
     {
@@ -30,28 +27,37 @@ bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
         return false;
     }
 
-    return true;
-}
+    this->root = document.first_node("nmaprun");
 
-bool ParseXMLReport::get_stats()
-{
-    rapidxml::xml_node<> *root = this->document.first_node("nmaprun");
-    if (root == NULL)
+    if (this->root == NULL)
     {
         std::cerr << "Not a valid Nmap XML report. Missing 'nmaprun' node!" << '\n';
         return false;
     }
 
-    rapidxml::xml_node<> *runstats = root->first_node("runstats");
-    if (root == NULL)
+    return true;
+}
+
+bool ParseXMLReport::get_stats()
+{
+    rapidxml::xml_node<> *runstats = this->root->first_node("runstats");
+
+    if (runstats == NULL)
     {
         std::cerr << "Missing 'runstats' node!" << '\n';
         return false;
     }
 
     rapidxml::xml_node<> *hosts = runstats->first_node("hosts");
+
     rapidxml::xml_attribute<> *up = hosts->first_attribute("up");
-    std::cout << up->value();
+    std::cout << "Number of machines up: " << up->value() << '\n';
+
+    rapidxml::xml_attribute<> *down = hosts->first_attribute("down");
+    std::cout << "Number of machines down: " << down->value() << '\n';
+
+    rapidxml::xml_attribute<> *total = hosts->first_attribute("total");
+    std::cout << "Number of machines scanned: " << total->value() << '\n';
 
     return true;
 }
