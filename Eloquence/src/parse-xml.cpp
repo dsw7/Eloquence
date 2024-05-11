@@ -33,6 +33,29 @@ bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
     return true;
 }
 
+bool ParseXMLReport::get_stats()
+{
+    rapidxml::xml_node<> *root = this->document.first_node("nmaprun");
+    if (root == NULL)
+    {
+        std::cerr << "Not a valid Nmap XML report. Missing 'nmaprun' node!" << '\n';
+        return false;
+    }
+
+    rapidxml::xml_node<> *runstats = root->first_node("runstats");
+    if (root == NULL)
+    {
+        std::cerr << "Missing 'runstats' node!" << '\n';
+        return false;
+    }
+
+    rapidxml::xml_node<> *hosts = runstats->first_node("hosts");
+    rapidxml::xml_attribute<> *up = hosts->first_attribute("up");
+    std::cout << up->value();
+
+    return true;
+}
+
 /*
 {
     rapidxml::xml_node<> *root = this->document.first_node();
