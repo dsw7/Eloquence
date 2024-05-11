@@ -24,6 +24,11 @@ bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
 
         return false;
     }
+    catch (const rapidxml::parse_error &e)
+    {
+        std::cerr << "Failed to parse '" << path_xml_file << "'\n" << e.what() << '\n';
+        return false;
+    }
 
     return true;
 }
