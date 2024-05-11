@@ -33,7 +33,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    rapidxml::xml_node<> *root = document.first_node("nmaprun");
+    xml_node *root = document.first_node("nmaprun");
 
     if (root == NULL)
     {
@@ -44,5 +44,6 @@ int main(int argc, char **argv)
     ::get_stats(root->first_node("runstats"));
     ::get_hosts(root->first_node("host"));
 
+    std::cout << '\n';
     return EXIT_SUCCESS;
 }
