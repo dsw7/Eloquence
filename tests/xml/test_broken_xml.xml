@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />
+    <address addr="10.0.0.a" addrtype="test" />
+    <trace proto="icmp"></trace>
+  </host>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />

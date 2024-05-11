@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />
+    <address addr="10.0.0.a" addrtype="test" />
+    <trace proto="icmp"></trace>
+  </host>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />
+    <address addr="10.0.0.a" addrtype="test" />
+    <trace proto="icmp">
+      <hop ttl="1" ipaddr="10.0.0.a" />
+    </trace>
+  </host>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />
+    <address addr="10.0.0.b" addrtype="test" />
+    <trace proto="icmp">
+      <hop ttl="1" ipaddr="10.0.0.a" />
+      <hop ttl="2" ipaddr="10.0.0.b" />
+    </trace>
+  </host>
+  <host starttime="0" endtime="0">
+    <status state="up" reason="echo-reply" />
+    <address addr="10.0.0.e" addrtype="test" />
+    <trace proto="icmp">
+      <hop ttl="1" ipaddr="10.0.0.a" />
+      <hop ttl="2" ipaddr="10.0.0.b" />
+      <hop ttl="3" ipaddr="10.0.0.c" />
+      <hop ttl="4" ipaddr="10.0.0.d" />
+      <hop ttl="5" ipaddr="10.0.0.e" />
+    </trace>
+  </host>
+  <runstats>
+    <hosts up="4" down="252" total="256" />
+  </runstats>
+</nmaprun>
