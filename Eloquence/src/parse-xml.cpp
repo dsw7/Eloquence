@@ -2,22 +2,14 @@
 
 #include <iostream>
 
-ParseXMLReport::ParseXMLReport(rapidxml::xml_node<> *root)
+void get_stats(rapidxml::xml_node<> *node)
 {
-    this->root = root;
-}
-
-void ParseXMLReport::get_stats()
-{
-    rapidxml::xml_node<> *runstats = this->root->first_node("runstats");
-
-    if (runstats == NULL)
+    if (node == NULL)
     {
-        std::cerr << "Missing 'runstats' node!" << '\n';
         return;
     }
 
-    rapidxml::xml_node<> *hosts = runstats->first_node("hosts");
+    rapidxml::xml_node<> *hosts = node->first_node("hosts");
 
     rapidxml::xml_attribute<> *up = hosts->first_attribute("up");
     std::cout << "Number of machines up: " << up->value() << '\n';
@@ -29,28 +21,13 @@ void ParseXMLReport::get_stats()
     std::cout << "Number of machines scanned: " << total->value() << '\n';
 }
 
-void ParseXMLReport::get_hosts()
+void get_hosts(rapidxml::xml_node<> *node)
 {
-    for (auto node = this->root->first_node(); node; node = node->next_sibling())
+    if (node == NULL)
     {
-        if (node->name() != std::string("host"))
-        {
-            continue;
-        }
-
-        rapidxml::xml_attribute<> *address = nullptr;
-
-        for (rapidxml::xml_node<> *host = node->first_node(); host; host = host->next_sibling())
-        {
-            if (host->name() != std::string("address"))
-            {
-                continue;
-            }
-
-            address = host->first_attribute("addr");
-            std::cout << node->name() << '\n';
-            std::cout << address->value() << "\n\n";
-            break;
-        }
+        return;
     }
+
+    std::cout << node->name() << '\n';
+    ::get_hosts(node->next_sibling("host"));
 }

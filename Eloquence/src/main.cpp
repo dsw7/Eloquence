@@ -41,9 +41,8 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    ParseXMLReport parser(root);
-    parser.get_stats();
-    parser.get_hosts();
+    ::get_stats(root->first_node("runstats"));
+    ::get_hosts(root->first_node("host"));
 
     return EXIT_SUCCESS;
 }

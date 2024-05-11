@@ -2,13 +2,5 @@
 
 #include "rapidxml.hpp"
 
-class ParseXMLReport
-{
-public:
-    ParseXMLReport(rapidxml::xml_node<> *root);
-    void get_stats();
-    void get_hosts();
-
-private:
-    rapidxml::xml_node<> *root = nullptr;
-};
+void get_stats(rapidxml::xml_node<> *node);
+void get_hosts(rapidxml::xml_node<> *node);
