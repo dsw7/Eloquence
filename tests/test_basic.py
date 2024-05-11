@@ -14,18 +14,13 @@ INVALID_FILES = [
 
 
 @mark.parametrize("xml_path", VALID_FILES)
-def test_valid(xml_path: str, capfd) -> None:
+def test_valid(xml_path: str) -> None:
     process = run(["build/elo", xml_path])
     assert process.returncode == EX_OK
 
-    cap = capfd.readouterr()
-    print()
-    print(cap.out)
-    print(cap.err)
-
 
 @mark.parametrize("xml_path", VALID_FILES)
-def test_valid_memory(xml_path: str, capfd) -> None:
+def test_valid_memory(xml_path: str) -> None:
     command = [
         "valgrind",
         f"--error-exitcode={EX_MEM_LEAK}",
@@ -35,15 +30,10 @@ def test_valid_memory(xml_path: str, capfd) -> None:
     ]
     process = run(command)
     assert process.returncode != EX_MEM_LEAK
-
-    cap = capfd.readouterr()
-    print()
-    print(cap.out)
-    print(cap.err)
 
 
 @mark.parametrize("xml_path", INVALID_FILES)
-def test_invalid_memory(xml_path: str, capfd) -> None:
+def test_invalid_memory(xml_path: str) -> None:
     command = [
         "valgrind",
         f"--error-exitcode={EX_MEM_LEAK}",
@@ -53,8 +43,3 @@ def test_invalid_memory(xml_path: str, capfd) -> None:
     ]
     process = run(command)
     assert process.returncode != EX_MEM_LEAK
-
-    cap = capfd.readouterr()
-    print()
-    print(cap.out)
-    print(cap.err)
