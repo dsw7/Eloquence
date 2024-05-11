@@ -1,41 +1,10 @@
 #include "parse-xml.hpp"
 
-#include "rapidxml_utils.hpp"
 #include <iostream>
-#include <stdexcept>
 
-bool ParseXMLReport::parse_xml_file(const std::string &path_xml_file)
+ParseXMLReport::ParseXMLReport(rapidxml::xml_node<> *root)
 {
-    rapidxml::xml_document<> document;
-
-    try
-    {
-        rapidxml::file<> xml_file(path_xml_file.c_str());
-        document.parse<0>(xml_file.data());
-    }
-    catch (const std::runtime_error &e)
-    {
-        std::cerr << "Failed to open '" << path_xml_file << "'\n"
-                  << "It's possible the permissions on this file are too restrictive\n"
-                  << "Raw message: '" << e.what() << "'\n";
-
-        return false;
-    }
-    catch (const rapidxml::parse_error &e)
-    {
-        std::cerr << "Failed to parse '" << path_xml_file << "'\n" << e.what() << '\n';
-        return false;
-    }
-
-    this->root = document.first_node("nmaprun");
-
-    if (this->root == NULL)
-    {
-        std::cerr << "Not a valid Nmap XML report. Missing 'nmaprun' node!" << '\n';
-        return false;
-    }
-
-    return true;
+    this->root = root;
 }
 
 bool ParseXMLReport::get_stats()
