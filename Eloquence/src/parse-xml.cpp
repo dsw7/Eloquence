@@ -29,6 +29,7 @@ void traverse_hops(xml_node *hop)
     if (hop == NULL)
     {
         add_arrow = false;
+        std::cout << '\n';
         return;
     }
 
@@ -60,7 +61,7 @@ void get_hosts(xml_node *node)
     if (node_addr)
     {
         xml_attr *addr = node_addr->first_attribute("addr");
-        std::cout << "\nTarget: " << addr->value() << '\n';
+        std::cout << "Target: " << addr->value() << '\n';
     }
 
     xml_node *node_hop = node->first_node("hop");

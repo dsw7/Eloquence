@@ -47,8 +47,7 @@ int main(int argc, char **argv)
     ::get_stats(root->first_node("runstats"));
     ::separator();
     ::get_hosts(root->first_node("host"));
-
-    std::cout << '\n';
+    ::separator();
 
     return EXIT_SUCCESS;
 }
