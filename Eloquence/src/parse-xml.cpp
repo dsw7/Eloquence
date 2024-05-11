@@ -1,6 +1,7 @@
 #include "parse-xml.hpp"
 
 #include <iostream>
+#include <string>
 
 void get_stats(xml_node *node)
 {
@@ -23,12 +24,25 @@ void get_stats(xml_node *node)
 
 void traverse_hops(xml_node *hop)
 {
+    static bool add_arrow = false;
+
     if (hop == NULL)
     {
+        add_arrow = false;
         return;
     }
 
     xml_attr *ipaddr = hop->first_attribute("ipaddr");
+
+    if (add_arrow)
+    {
+        std::cout << " -> ";
+    }
+    else
+    {
+        add_arrow = true;
+    }
+
     std::cout << ipaddr->value();
 
     ::traverse_hops(hop->next_sibling("hop"));

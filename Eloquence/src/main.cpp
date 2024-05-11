@@ -14,6 +14,7 @@ int main(int argc, char **argv)
     }
 
     std::string path_xml = std::string(argv[1]);
+
     if (not std::filesystem::exists(path_xml))
     {
         std::cerr << "Could not find '" << path_xml << "'\n";
@@ -45,5 +46,6 @@ int main(int argc, char **argv)
     ::get_hosts(root->first_node("host"));
 
     std::cout << '\n';
+
     return EXIT_SUCCESS;
 }
