@@ -30,6 +30,9 @@ void parse_finished(xml_node *node_finished)
 
     xml_attr *timestr = node_finished->first_attribute("timestr");
     std::cout << std::setw(30) << std::left << "Report collected at:" << timestr->value() << '\n';
+
+    xml_attr *elapsed = node_finished->first_attribute("elapsed");
+    std::cout << std::setw(30) << std::left << "Elapsed time (s):" << elapsed->value() << '\n';
 }
 
 void get_runstats(xml_node *node)
