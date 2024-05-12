@@ -62,3 +62,6 @@ add_executable(
   "src/parse-runstats.cpp"
   "src/utils.cpp"
 )
+
+set(CMAKE_INSTALL_PREFIX "$ENV{HOME}/.local")
+install(TARGETS "elo" DESTINATION "bin")

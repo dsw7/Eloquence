@@ -23,7 +23,7 @@ help:
 
 compile:
 	@cmake -S Eloquence -B build
-	@make --jobs=12 --directory=build
+	@make --jobs=12 --directory=build install
 
 clean:
 	@rm -rfv build
