@@ -2,6 +2,7 @@ from os import EX_OK
 from subprocess import run
 from pytest import mark
 
+EX_FAIL = 1
 EX_MEM_LEAK = 2
 VALGRIND_CMD = [
     "valgrind",
@@ -17,6 +18,26 @@ INVALID_FILES = [
     "tests/xml/test_html_input.xml",
     "tests/xml/test_non_nmap.xml",
 ]
+
+
+def test_help() -> None:
+    process = run(["build/elo", "--help"])
+    assert process.returncode == EX_FAIL
+
+
+def test_help_shorthand() -> None:
+    process = run(["build/elo", "-h"])
+    assert process.returncode == EX_FAIL
+
+
+def test_help_memory() -> None:
+    process = run([*VALGRIND_CMD, "--help"])
+    assert process.returncode != EX_MEM_LEAK
+
+
+def test_help_shorthand_memory() -> None:
+    process = run([*VALGRIND_CMD, "-h"])
+    assert process.returncode != EX_MEM_LEAK
 
 
 @mark.parametrize("xml_path", VALID_FILES)
