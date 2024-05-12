@@ -16,9 +16,8 @@ void help_messages()
                       name +
                       "\033[0m\n\n"
                       "\033[1mDESCRIPTION:\033[0m\n"
-                      "  A command line program for parsing Nmap XML files. To be used as\n"
-                      "  part of a larger workflow. See \033[4mhttps://github.com/dsw7/GPTifier\033[0m\n"
-                      "  for more information.\n\n"
+                      "  A command line program for parsing Nmap XML files. To be used as part of a larger workflow.\n"
+                      "  See \033[4mhttps://github.com/dsw7/GPTifier\033[0m for more information.\n\n"
                       "\033[1mSYNOPSIS:\033[0m\n"
                       "  \033[4melo\033[0m [-h | --help] </path/to/xml>\n\n"
                       "\033[1mOPTIONS:\033[0m\n"
