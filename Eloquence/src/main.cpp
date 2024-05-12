@@ -1,4 +1,5 @@
-#include "parse-xml.hpp"
+#include "parse-hosts.hpp"
+#include "parse-runstats.hpp"
 #include "utils.hpp"
 
 #include "rapidxml.hpp"
@@ -44,7 +45,7 @@ int main(int argc, char **argv)
     }
 
     ::separator();
-    ::get_stats(root->first_node("runstats"));
+    ::get_runstats(root->first_node("runstats"));
     ::separator();
     ::get_hosts(root->first_node("host"));
     ::separator();
