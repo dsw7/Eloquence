@@ -4,6 +4,7 @@
 
 #include "rapidxml.hpp"
 #include "rapidxml_utils.hpp"
+#include <cstring>
 #include <filesystem>
 #include <iostream>
 
@@ -29,6 +30,12 @@ void help_messages()
 int main(int argc, char **argv)
 {
     if (argc < 2)
+    {
+        ::help_messages();
+        return EXIT_FAILURE;
+    }
+
+    if (::strcmp(argv[1], "-h") == 0 or ::strcmp(argv[1], "--help") == 0)
     {
         ::help_messages();
         return EXIT_FAILURE;
