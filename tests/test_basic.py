@@ -3,6 +3,12 @@ from subprocess import run
 from pytest import mark
 
 EX_MEM_LEAK = 2
+VALGRIND_CMD = [
+    "valgrind",
+    f"--error-exitcode={EX_MEM_LEAK}",
+    "--leak-check=full",
+    "build/elo",
+]
 VALID_FILES = [
     "tests/xml/test_ping_scan.xml",
 ]
@@ -21,25 +27,11 @@ def test_valid(xml_path: str) -> None:
 
 @mark.parametrize("xml_path", VALID_FILES)
 def test_valid_memory(xml_path: str) -> None:
-    command = [
-        "valgrind",
-        f"--error-exitcode={EX_MEM_LEAK}",
-        "--leak-check=full",
-        "build/elo",
-        xml_path,
-    ]
-    process = run(command)
+    process = run([*VALGRIND_CMD, xml_path])
     assert process.returncode != EX_MEM_LEAK
 
 
 @mark.parametrize("xml_path", INVALID_FILES)
 def test_invalid_memory(xml_path: str) -> None:
-    command = [
-        "valgrind",
-        f"--error-exitcode={EX_MEM_LEAK}",
-        "--leak-check=full",
-        "build/elo",
-        xml_path,
-    ]
-    process = run(command)
+    process = run([*VALGRIND_CMD, xml_path])
     assert process.returncode != EX_MEM_LEAK
