@@ -1,12 +1,16 @@
 #!/bin/bash
 
-PRIVATE_IP_SCAN_RANGE="10.0.0.0/24"
+echo "Input a subnet or IP address [default = 10.0.0.0/24]:"
+echo -n "> "
+read -r SUBNET_OR_IP
+
+SUBNET_OR_IP=${SUBNET_OR_IP:-"10.0.0.0/24"}
 PATH_XML="/tmp/nmap-results.xml"
 
-echo "Scanning the CIDR block: $PRIVATE_IP_SCAN_RANGE"
-echo "Attempting to run nmap. This may take a few moments..."
+echo "Scanning the subnet: $SUBNET_OR_IP"
+echo "Attempting to run nmap. This may take some time depending on the scan"
 
-if sudo nmap -sn --traceroute $PRIVATE_IP_SCAN_RANGE -oX=$PATH_XML > /dev/null; then
+if sudo nmap -sn --traceroute "$SUBNET_OR_IP" -oX=$PATH_XML > /dev/null; then
   echo "Exporting report to '$PATH_XML'"
 else
   echo "Failed to run nmap"
