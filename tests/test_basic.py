@@ -41,72 +41,79 @@ def print_stderr(raw_stderr: str) -> None:
 
 def test_help(capfd) -> None:
     process = run(["build/elo", "--help"])
-    assert process.returncode == EX_FAIL
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode == EX_FAIL
 
 
 def test_help_shorthand(capfd) -> None:
     process = run(["build/elo", "-h"])
-    assert process.returncode == EX_FAIL
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode == EX_FAIL
 
 
 def test_help_memory(capfd) -> None:
     process = run([*VALGRIND_CMD, "--help"])
-    assert process.returncode != EX_MEM_LEAK
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode != EX_MEM_LEAK
 
 
 def test_help_shorthand_memory(capfd) -> None:
     process = run([*VALGRIND_CMD, "-h"])
-    assert process.returncode != EX_MEM_LEAK
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode != EX_MEM_LEAK
 
 
 @mark.parametrize("xml_path", VALID_FILES)
 def test_valid(xml_path: str, capfd) -> None:
     process = run(["build/elo", xml_path])
-    assert process.returncode == EX_OK
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode == EX_OK
 
 
 @mark.parametrize("xml_path", VALID_FILES)
 def test_valid_memory(xml_path: str, capfd) -> None:
     process = run([*VALGRIND_CMD, xml_path])
-    assert process.returncode != EX_MEM_LEAK
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode != EX_MEM_LEAK
 
 
 @mark.parametrize("xml_path", INVALID_FILES)
 def test_invalid_memory(xml_path: str, capfd) -> None:
     process = run([*VALGRIND_CMD, xml_path])
-    assert process.returncode != EX_MEM_LEAK
 
     output = capfd.readouterr()
     print()
     print_stdout(output.out)
     print_stderr(output.err)
+
+    assert process.returncode != EX_MEM_LEAK
