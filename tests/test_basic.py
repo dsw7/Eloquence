@@ -59,29 +59,54 @@ def test_help_shorthand(capfd) -> None:
     print_stderr(output.err)
 
 
-def test_help_memory() -> None:
+def test_help_memory(capfd) -> None:
     process = run([*VALGRIND_CMD, "--help"])
     assert process.returncode != EX_MEM_LEAK
 
+    output = capfd.readouterr()
+    print()
+    print_stdout(output.out)
+    print_stderr(output.err)
 
-def test_help_shorthand_memory() -> None:
+
+def test_help_shorthand_memory(capfd) -> None:
     process = run([*VALGRIND_CMD, "-h"])
     assert process.returncode != EX_MEM_LEAK
 
+    output = capfd.readouterr()
+    print()
+    print_stdout(output.out)
+    print_stderr(output.err)
+
 
 @mark.parametrize("xml_path", VALID_FILES)
-def test_valid(xml_path: str) -> None:
+def test_valid(xml_path: str, capfd) -> None:
     process = run(["build/elo", xml_path])
     assert process.returncode == EX_OK
 
+    output = capfd.readouterr()
+    print()
+    print_stdout(output.out)
+    print_stderr(output.err)
+
 
 @mark.parametrize("xml_path", VALID_FILES)
-def test_valid_memory(xml_path: str) -> None:
+def test_valid_memory(xml_path: str, capfd) -> None:
     process = run([*VALGRIND_CMD, xml_path])
     assert process.returncode != EX_MEM_LEAK
+
+    output = capfd.readouterr()
+    print()
+    print_stdout(output.out)
+    print_stderr(output.err)
 
 
 @mark.parametrize("xml_path", INVALID_FILES)
-def test_invalid_memory(xml_path: str) -> None:
+def test_invalid_memory(xml_path: str, capfd) -> None:
     process = run([*VALGRIND_CMD, xml_path])
     assert process.returncode != EX_MEM_LEAK
+
+    output = capfd.readouterr()
+    print()
+    print_stdout(output.out)
+    print_stderr(output.err)
