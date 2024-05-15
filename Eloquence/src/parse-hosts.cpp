@@ -37,14 +37,6 @@ void get_hosts(xml_node *node)
         return;
     }
 
-    xml_node *node_addr = node->first_node("address");
-
-    if (node_addr)
-    {
-        xml_attr *addr = node_addr->first_attribute("addr");
-        std::cout << "Target: " << addr->value() << '\n';
-    }
-
     xml_node *node_hop = node->first_node("hop");
 
     if (node_hop)
