@@ -7,7 +7,7 @@ void traverse_hops(xml_node *hop)
 {
     static bool add_arrow = false;
 
-    if (hop == NULL)
+    if (hop == nullptr)
     {
         add_arrow = false;
         std::cout << '\n';
@@ -32,7 +32,7 @@ void traverse_hops(xml_node *hop)
 
 void get_hosts(xml_node *node)
 {
-    if (node == NULL)
+    if (node == nullptr)
     {
         return;
     }

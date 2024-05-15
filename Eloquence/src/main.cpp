@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 
     xml_node *root = document.first_node("nmaprun");
 
-    if (root == NULL)
+    if (root == nullptr)
     {
         std::cerr << "Not a valid Nmap XML report. Missing 'nmaprun' node!" << '\n';
         return EXIT_FAILURE;

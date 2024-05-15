@@ -6,7 +6,7 @@
 
 void parse_hosts(xml_node *node_hosts)
 {
-    if (node_hosts == NULL)
+    if (node_hosts == nullptr)
     {
         return;
     }
@@ -23,7 +23,7 @@ void parse_hosts(xml_node *node_hosts)
 
 void parse_finished(xml_node *node_finished)
 {
-    if (node_finished == NULL)
+    if (node_finished == nullptr)
     {
         return;
     }
@@ -37,7 +37,7 @@ void parse_finished(xml_node *node_finished)
 
 void get_runstats(xml_node *node)
 {
-    if (node == NULL)
+    if (node == nullptr)
     {
         return;
     }
