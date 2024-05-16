@@ -15,8 +15,6 @@ void traverse_hops(xml_node *hop)
         return;
     }
 
-    xml_attr *ipaddr = hop->first_attribute("ipaddr");
-
     if (add_arrow)
     {
         std::cout << " -> ";
@@ -26,7 +24,10 @@ void traverse_hops(xml_node *hop)
         add_arrow = true;
     }
 
-    std::cout << ipaddr->value();
+    xml_attr *ipaddr = hop->first_attribute("ipaddr");
+    xml_attr *rtt = hop->first_attribute("rtt");
+
+    std::cout << ipaddr->value() << " (" << rtt->value() << " ms)";
 
     ::traverse_hops(hop->next_sibling("hop"));
 }
