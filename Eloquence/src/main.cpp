@@ -69,9 +69,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    ::separator();
-    std::cout << "** Statistics:\n";
-    ::get_runstats(root->first_node("runstats"));
+    ::get_runstats(root);
     ::get_hosts(root);
     ::separator();
 
