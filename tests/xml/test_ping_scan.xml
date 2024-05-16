@@ -10,14 +10,14 @@
     <status state="up" reason="echo-reply" />
     <address addr="10.0.0.a" addrtype="test" />
     <trace proto="icmp">
-      <hop ttl="1" ipaddr="10.0.0.a" />
+      <hop ttl="1" ipaddr="10.0.0.a" rtt="4.18" />
     </trace>
   </host>
   <host starttime="0" endtime="0">
     <status state="up" reason="echo-reply" />
     <address addr="10.0.0.b" addrtype="test" />
     <trace proto="icmp">
-      <hop ttl="1" ipaddr="10.0.0.a" />
+      <hop ttl="1" ipaddr="10.0.0.a" rtt="4.18" />
       <hop ttl="2" ipaddr="10.0.0.b" />
     </trace>
   </host>
@@ -25,7 +25,7 @@
     <status state="up" reason="echo-reply" />
     <address addr="10.0.0.e" addrtype="test" />
     <trace proto="icmp">
-      <hop ttl="1" ipaddr="10.0.0.a" />
+      <hop ttl="1" ipaddr="10.0.0.a" rtt="4.18" />
       <hop ttl="2" ipaddr="10.0.0.b" />
       <hop ttl="3" ipaddr="10.0.0.c" />
       <hop ttl="4" ipaddr="10.0.0.d" />
