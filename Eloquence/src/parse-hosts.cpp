@@ -1,4 +1,5 @@
 #include "parse-hosts.hpp"
+#include "utils.hpp"
 
 #include <iostream>
 #include <string>
@@ -30,20 +31,27 @@ void traverse_hops(xml_node *hop)
     ::traverse_hops(hop->next_sibling("hop"));
 }
 
-void get_hosts(xml_node *node)
+void traverse_hosts(xml_node *host)
 {
-    if (node == nullptr)
+    if (host == nullptr)
     {
         return;
     }
 
-    xml_node *node_hop = node->first_node("hop");
+    xml_node *node_hop = host->first_node("hop");
 
     if (node_hop)
     {
         ::traverse_hops(node_hop);
     }
 
-    ::get_hosts(node->first_node("trace"));
-    ::get_hosts(node->next_sibling("host"));
+    ::traverse_hosts(host->first_node("trace"));
+    ::traverse_hosts(host->next_sibling("host"));
+}
+
+void get_hosts(xml_node *root)
+{
+    ::separator();
+    std::cout << "** Network:\n";
+    ::traverse_hosts(root->first_node("host"));
 }

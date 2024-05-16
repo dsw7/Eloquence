@@ -72,9 +72,7 @@ int main(int argc, char **argv)
     ::separator();
     std::cout << "** Statistics:\n";
     ::get_runstats(root->first_node("runstats"));
-    ::separator();
-    std::cout << "** Network:\n";
-    ::get_hosts(root->first_node("host"));
+    ::get_hosts(root);
     ::separator();
 
     return EXIT_SUCCESS;

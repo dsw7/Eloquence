@@ -2,4 +2,4 @@
 
 #include "utils.hpp"
 
-void get_hosts(xml_node *node);
+void get_hosts(xml_node *root);
