@@ -15,7 +15,15 @@ via one command), and I also like working with hierarchical data structures such
 XML output with custom tree traversal algorithms affords me that opportunity.
 
 ## Setup
-Compile the binary by running:
+This project uses [RapidXml](https://rapidxml.sourceforge.net/). Ensure that the following header files are
+located in your include directory:
+```console
+rapidxml.hpp
+rapidxml_iterators.hpp
+rapidxml_print.hpp
+rapidxml_utils.hpp
+```
+The compilation process will abort if `cmake` cannot locate these files. Compile the binary by running:
 ```console
 make compile
 ```
