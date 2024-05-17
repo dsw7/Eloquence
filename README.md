@@ -30,4 +30,5 @@ Simply run:
 ```console
 ./scan
 ```
-This bash script will run `nmap` and may require elevated privileges.
+This bash script will run `nmap` and may require elevated privileges. After an XML report is generated, the
+script will run `elo` to parse the XML and display the results in a sensical format.
