@@ -17,7 +17,7 @@ XML output with custom tree traversal algorithms affords me that opportunity.
 ## Setup
 This project uses [RapidXml](https://rapidxml.sourceforge.net/). Ensure that the following header files are
 located in your include directory:
-```console
+```
 rapidxml.hpp
 rapidxml_iterators.hpp
 rapidxml_print.hpp
