@@ -7,6 +7,7 @@ use of this project for illicit purposes!**
 ## Table of Contents
 - [Motivation](#motivation)
 - [Setup](#setup)
+- [Usage](#usage)
 
 ## Motivation
 I wanted to keep track of devices in my local area network "at the click of a button" (or more specifically,
@@ -23,3 +24,10 @@ Try running:
 elo --help  # or elo -h
 ```
 To ensure that the binary was installed under `$PATH`. A help menu should be printed to `stdout`.
+
+## Usage
+Simply run:
+```console
+./scan
+```
+This bash script will run `nmap` and may require elevated privileges.
